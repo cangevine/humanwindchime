@@ -27,8 +27,8 @@ void setup() {
 }
 
 void draw() {
-  //background(0,0,0);
-  int steps = 100;
+  background(0,0,0);
+  int steps = 80;
   int index;
   
   context.update();
@@ -41,19 +41,18 @@ void draw() {
         int p = lastMap[index];
         if (p - d > 1000) {
           set(x, y, color(255, 0, 0));
-          float freq = map(index, 0, map.length, 440, 800);
-          //int channel = (int) map(x, 0, kinectWidth, 0, 15);
-          int channel = 0;
+          int channel = 0;          
           int pitch = (int) map(x, 0, kinectWidth, 30, 110);
-          int velocity = (int) map(p - d, 0, 4000, 0, 255);
-          println(velocity);
+          int velocity = (int) map(p - d, 0, 4500, 0, 255);
+          println(pitch);
           myBus.sendNoteOn(channel, pitch, velocity);
           
-          //myBus.sendControllerChange(0, 0, 90); 
+          myBus.sendControllerChange(0, 0, 90); 
         }
       }
     }
   }
   lastMap = new int[map.length];
   arrayCopy(map, lastMap);
+  image(context.depthImage(), 0, 0);
 }
