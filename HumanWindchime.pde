@@ -39,7 +39,7 @@ void draw() {
       if (lastMap != null) {
         int d = map[index];
         int p = lastMap[index];
-        if (p - d > 3000) {
+        if (p - d > 2500) {
           set(x, y, color(255, 0, 0));
           int channel = 0;          
           int pitch = (int) map(x, 0, kinectWidth, 30, 110);
